@@ -115,15 +115,6 @@ const stageOrder: Stage[] = [
 const nextStage = (s: Stage): Stage =>
   stageOrder[Math.min(stageOrder.indexOf(s) + 1, stageOrder.length - 1)];
 
-const stageStyles: Record<Stage, string> = {
-  New: "bg-slate-100 text-slate-700 ring-slate-200",
-  Contacted: "bg-blue-100 text-blue-700 ring-blue-200",
-  Qualified: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-  Meeting: "bg-violet-100 text-violet-700 ring-violet-200",
-  Won: "bg-amber-100 text-amber-800 ring-amber-200",
-  Lost: "bg-rose-100 text-rose-700 ring-rose-200",
-};
-
 const scoreBar = (n: number) =>
   n >= 80
     ? "bg-emerald-500"
@@ -257,8 +248,7 @@ const Badge = ({
 const StageBadge = ({ stage }: { stage: Stage }) => (
   <span
     className={cx(
-      "inline-flex h-7 min-w-[7.5rem] items-center justify-center rounded-full px-3 text-[12px] font-semibold ring-1 ring-inset whitespace-nowrap",
-      stageStyles[stage]
+      "inline-flex h-7 min-w-[7.5rem] items-center justify-center rounded-full px-3 text-[12px] font-semibold ring-1 ring-inset whitespace-nowrap"
     )}
   >
     {stage}
@@ -587,6 +577,7 @@ export default function SDRDashboard() {
     try {
       setLoadingId(lead.id);
       const draft = await apiCompose(lead);
+      console.log("Email Draft:", draft);
       setEmailDraft(draft);
       setSelected(lead);
     } catch (e: any) {
@@ -999,7 +990,6 @@ ${emailDraft.cta}`,
             <div>
               <div className="flex items-center justify-between text-xs text-slate-500">
                 <span>Body</span>
-                <span>{emailDraft.body.length} chars</span>
               </div>
               <textarea
                 value={emailDraft.body}
