@@ -1101,13 +1101,6 @@ ${emailDraft.cta}`);
 
       {toast && <Toast message={toast} onClose={() => setToast("")} />}
 
-      <footer className="mt-12 border-t bg-white/60">
-        <div className="mx-auto max-w-7xl px-6 py-4 text-xs text-slate-500">
-          Demo UI • Wire to live Grok endpoints by setting{" "}
-          <code>useMock = false</code> and pointing to <code>/api/qualify</code>
-          , <code>/api/compose</code>, <code>/api/slots</code>.
-        </div>
-      </footer>
     </div>
   );
 }
